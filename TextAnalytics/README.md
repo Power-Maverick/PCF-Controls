@@ -13,8 +13,8 @@ Identify KeyPhrase | Determines if control should identify the key phrases in th
 Identify Entities | Determines if control should identify the entities in the text. It also provides the wiki link (if available) | No
 
 ### Screenshot of the configuration
-TBD
+![TextAnalytics-Configuration](Others/TextAnalytics-Configuration.png)
 
 ### Demo of the control
-TBD
+[![TextAnalytics-DemoVideo](https://img.youtube.com/vi/Vksv9q2uMZw/0.jpg)](https://www.youtube.com/watch?v=Vksv9q2uMZw&start=120&end=360)
 
