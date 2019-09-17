@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="TextAnalytics" version="1.2.4" display-name-key="Text Analytics" description-key="A control that detects sentiment, key phrases, named entities and language from your text" control-type="standard">
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="TextInput" display-name-key="Text for Analysis" description-key="Analytics will run against bounded attrbiute" of-type-group="AllTextType" usage="bound" required="true" />
+    <property name="SubscriptionKey" display-name-key="Subscription Key"  description-key="Text Analytics Subscription Key" of-type="SingleLine.Text" usage="input" required="true" /> 
+    <property name="Endpoint" display-name-key="Endpoint"  description-key="Text Analytics Endpoint" of-type="SingleLine.Text" usage="input" required="true" /> 
+    
+    <property name="DetectLanguage" display-name-key="Detect Language"  description-key="Detect Language" of-type="TwoOptions" usage="input" required="false" />
+    <property name="IdentifyKeyPhrase" display-name-key="Identify KeyPhrase"  description-key="Identify KeyPhrase" of-type="TwoOptions" usage="input" required="false" /> 
+    <property name="IdentifyEntities" display-name-key="Identify Entities"  description-key="Identify Entities" of-type="TwoOptions" usage="input" required="false" /> 
+
+    <type-group name="AllTextType">
+      <type>SingleLine.Text</type>
+      <type>SingleLine.TextArea</type>
+      <type>Multiple</type>
+    </type-group>
+      
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/TextAnalytics.css" order="1" />
+    </resources>
+    <feature-usage>
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+   
+  </control>
+</manifest>

@@ -1,0 +1,33 @@
+.mainWrapper {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -15px 0;
+    border: solid #f8f9fa;
+    border-width: .2rem 0 0;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: #fff;
+}
+
+.table td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.table td:nth-child(1) {
+    width:150px;
+}
+
+.table-striped tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+
+.table-sm td {
+    padding: .3rem;
+}
