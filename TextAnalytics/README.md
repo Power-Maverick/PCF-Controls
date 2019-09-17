@@ -16,5 +16,5 @@ Identify Entities | Determines if control should identify the entities in the te
 ![TextAnalytics-Configuration](Others/TextAnalytics-Configuration.png)
 
 ### Demo of the control
-[![TextAnalytics-DemoVideo](https://img.youtube.com/vi/Vksv9q2uMZw/0.jpg)](https://www.youtube.com/watch?v=Vksv9q2uMZw)
+[![TextAnalytics-DemoVideo](https://img.youtube.com/vi/Vksv9q2uMZw/0.jpg)](https://www.youtube.com/watch?v=Vksv9q2uMZw&start=240&end=360)
 
