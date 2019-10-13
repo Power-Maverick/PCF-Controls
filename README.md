@@ -8,3 +8,6 @@ All controls will have their own folder. D365 Solution file for each control wil
 
 #### Text Analytics
 A fully configurable control that uses Azure Text Analytics Cognitive Service to evaluate Sentiment, Language, Key Phrases and Entities from a Text.
+
+#### Weather Widget
+A fully configurable PCF control that uses Open Weather Data API to show current as well as 5 day/3 hour weather forecast.

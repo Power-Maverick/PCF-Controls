@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="WeatherWidget" version="1.0.7" display-name-key="Weather Widget" description-key="Shows the weather data" control-type="standard">
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="ZipCode" display-name-key="Zip Code" description-key="Zip Code or Postal Code" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="CountryCode" display-name-key="Country Code" description-key="Two-digit Country Code" of-type="SingleLine.Text" usage="bound" required="true" />
+
+    <property name="ApiKey" display-name-key="OpenWeather API Key" description-key="OpenWeather API Key. Register for free/paid plan. More details on https://openweathermap.org/price" of-type="SingleLine.Text" usage="input" required="true" />
+    
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/main.css" order="1" />
+    </resources>
+    <feature-usage>
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>
