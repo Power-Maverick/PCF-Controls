@@ -11,7 +11,7 @@ Zip Code | Zip or Postal code | Yes
 Country Code | Two-digit country code (e.g. US) | Yes
 
 ### Screenshot of the configuration
-Coming soon!!
+![WeatherWidget-Configuration](Others/WeatherWidget-Configuration.png)
 
 ### Demo of the control
 Coming soon!!
