@@ -1,3 +1,7 @@
+.widgetHead {
+  float: right;
+}
+
 .widgetBody {
   /* justify-content: space-around;
   padding-bottom: 16px;

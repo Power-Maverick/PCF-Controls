@@ -4,11 +4,15 @@ import { string } from "prop-types";
 
 export interface IWeatherControlProps {
     cityName?: string;
-    currentTemprature?: number;
+    currentTemprature?: string;
     currentWeatherDescription?: string;
     currentWindSpeed?: number;
     currentWindDescription?: string;
     currentWeatherIcon?: string;
+
+    positionCityName?: string;
+    positionTemprature?: string;
+    positionShow?: boolean;
 
     forecast?: IForecastData[];
 }
@@ -38,7 +42,10 @@ export class WeatherControl extends React.Component<IWeatherControlProps, IWeath
             currentWindSpeed: props.currentWindSpeed,
             currentWindDescription: props.currentWindDescription,
             currentWeatherIcon: props.currentWeatherIcon,
-            forecast: props.forecast
+            forecast: props.forecast,
+            positionCityName: props.positionCityName,
+            positionTemprature: props.positionTemprature,
+            positionShow: props.positionShow
         };
     }
 
@@ -47,8 +54,9 @@ export class WeatherControl extends React.Component<IWeatherControlProps, IWeath
     }
 
     public render(): JSX.Element {
-        debugger;
+        
         let forecastRow: any[] = [];
+        let currentLocation: any;
 
         if (this.state.forecast) {
             this.state.forecast.map((value: IForecastData, index: number) => {
@@ -68,30 +76,46 @@ export class WeatherControl extends React.Component<IWeatherControlProps, IWeath
             });
         }
 
-        return (
-            <div className={"widgetBody"}>
-                <div className={"todayCard"}>
-                    <div className={"todayCard-top"}>
-                        {this.state.cityName}
-                    </div>
-                    <div className={"todayCard-middle"}>
-                        <img src={this.state.currentWeatherIcon} ></img>
-                        <p className={"todayCard-middle-number"}>
-                           {this.state.currentTemprature.toFixed(2)}
-                           <span className={"todayCard-middle-degree"}> °F</span>
-                        </p>
-                    </div>
-                    <div className={"todayCard-bottom"}>
-                          <p className={"todayCard-bottom-means"}>{this.state.currentWeatherDescription}</p>
-                          <p className={"todayCard-bottom-wind"}>Wind: {this.state.currentWindSpeed} m/h {this.state.currentWindDescription}</p>
-                    </div>
-                </div>
-                <div className={"calendarCard"}>
-                    <ul className={"calendar"}>
-                        {forecastRow}
-                    </ul>
-                    <div className={"calendarTempratureCard"}>
+        if (this.state.positionShow) {
+            currentLocation =   <div className={"widgetHead"}>
+                                    {"Current Location: "}{this.state.positionCityName}{" | "}{this.state.positionTemprature}{" °F"}
+                                </div>
+        }
+        else {
+            currentLocation =   <div className={"widgetHead"}>
+                                    {"Current Location Not Available"}
+                                </div>
+        }
 
+        return (
+            <div>
+                <div className={"widgetHead"}>
+                    {currentLocation}
+                </div>
+                <div className={"widgetBody"}>
+                    <div className={"todayCard"}>
+                        <div className={"todayCard-top"}>
+                            {this.state.cityName}
+                        </div>
+                        <div className={"todayCard-middle"}>
+                            <img src={this.state.currentWeatherIcon} ></img>
+                            <p className={"todayCard-middle-number"}>
+                                {this.state.currentTemprature}
+                                <span className={"todayCard-middle-degree"}> °F</span>
+                            </p>
+                        </div>
+                        <div className={"todayCard-bottom"}>
+                            <p className={"todayCard-bottom-means"}>{this.state.currentWeatherDescription}</p>
+                            <p className={"todayCard-bottom-wind"}>Wind: {this.state.currentWindSpeed} m/h {this.state.currentWindDescription}</p>
+                        </div>
+                    </div>
+                    <div className={"calendarCard"}>
+                        <ul className={"calendar"}>
+                            {forecastRow}
+                        </ul>
+                        <div className={"calendarTempratureCard"}>
+
+                        </div>
                     </div>
                 </div>
             </div>
