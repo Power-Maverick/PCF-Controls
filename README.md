@@ -1,7 +1,7 @@
 # PCF-Controls
 Repos of all my Powerapps Component Framework (PCF) Controls.
 
-> All controls are created using [PCF Custom Control Builder](https://github.com/Danz-maveRICK/PCF-CustomControlBuilder)
+> All controls are created using [PCF Custom Control Builder](https://github.com/Power-maveRICK/PCF-CustomControlBuilder)
 
 ## Overview
 All controls will have their own folder. D365 Solution file for each control will be in their respective folder.
