@@ -256,6 +256,9 @@ export class TextAnalytics implements ComponentFramework.StandardControl<IInputs
 					console.log('Error: ' + e.message);
 				});
 			};
+				let keyPhraseRequest = https.request(keyPhrasesRequestParams, keyPhrasesResponse);
+		keyPhraseRequest.write(body);
+		keyPhraseRequest.end();
 		}
 		else {
 			parent.props.identifyKeyPhrases = false;
