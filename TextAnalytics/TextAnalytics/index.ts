@@ -252,13 +252,13 @@ export class TextAnalytics implements ComponentFramework.StandardControl<IInputs
 					parent.props.identifyKeyPhrases = true;
 					parent.renderReactDOM(parent);
 				});
-				response.on('error', function (e: any) {
+					response.on('error', function (e: any) {
 					console.log('Error: ' + e.message);
 				});
 			};
-				let keyPhraseRequest = https.request(keyPhrasesRequestParams, keyPhrasesResponse);
-		keyPhraseRequest.write(body);
-		keyPhraseRequest.end();
+			let keyPhraseRequest = https.request(keyPhrasesRequestParams, keyPhrasesResponse);
+			keyPhraseRequest.write(body);
+			keyPhraseRequest.end();
 		}
 		else {
 			parent.props.identifyKeyPhrases = false;
