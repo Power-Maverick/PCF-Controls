@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="ExpandingDetailsListControl" version="0.0.88" display-name-key="Expanding Details List" description-key="Expand any column data OnHover" control-type="standard">
+    <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
+    <data-set name="listDataSet" display-name-key="Expanding List Dataset" cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFindSearch:true">
+    </data-set>
+    <property name="expandingColumns" display-name-key="Expanding Columns" description-key="Columns that should expand" of-type="SingleLine.Text" usage="input" required="true" />
+    <resources>
+      <code path="index.ts" order="1" />
+      <!-- <css path="css/ExpandingDetailsListStyle.css" order="1" /> -->
+    </resources>
+    <feature-usage>
+      <uses-feature name="Device.captureAudio" required="true" />
+      <uses-feature name="Device.captureImage" required="true" />
+      <uses-feature name="Device.captureVideo" required="true" />
+      <uses-feature name="Device.getBarcodeValue" required="true" />
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Device.pickFile" required="true" />
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>
