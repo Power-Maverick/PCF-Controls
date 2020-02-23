@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Maverick.Controls" constructor="HoverDetailsListControl" version="0.1.23" display-name-key="Hovering Details List" description-key="Shows HoverCard on configured column" control-type="standard">
+  <control namespace="Maverick.Controls" constructor="HoverDetailsListControl" version="0.1.25" display-name-key="Hovering Details List" description-key="Shows HoverCard on configured column" control-type="standard">
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <data-set name="listDataSet" display-name-key="Hover List Dataset" cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFindSearch:true">
     </data-set>

@@ -12,7 +12,8 @@ export class HoverDetailsListControl implements ComponentFramework.StandardContr
 		data: [],
 		columns: [],
 		hoveringColumns: "",
-		totalResultCount: 0
+		totalResultCount: 0,
+		allocatedWidth: 0
 	};
 
 	/**
@@ -62,6 +63,9 @@ export class HoverDetailsListControl implements ComponentFramework.StandardContr
 		if (rowspan) {
 			this.divDetailListWrapper.style.height = `${height}em`;
 		}
+		else {
+			this.divDetailListWrapper.style.height = "auto";
+		}
 
 		this.theContainer.appendChild(this.divDetailListWrapper);
 	}
@@ -76,8 +80,9 @@ export class HoverDetailsListControl implements ComponentFramework.StandardContr
 
 		const dataSet = context.parameters.listDataSet;
 
-		let datasetColumns: IListColumn[] = this._columns(dataSet, context.mode.allocatedWidth === -1 ? 150 : context.mode.allocatedWidth);
+		let datasetColumns: IListColumn[] = this._columns(dataSet);
 		let dataItems: IListData[] = this._items(dataSet, datasetColumns);
+		this._props.allocatedWidth = context.mode.allocatedWidth === -1 ? 0 : context.mode.allocatedWidth;
 		this._props.data = dataItems;
 		this._props.columns = datasetColumns;
 		this._props.hoveringColumns = context.parameters.hoveringColumns.raw || "";
@@ -109,7 +114,7 @@ export class HoverDetailsListControl implements ComponentFramework.StandardContr
 	/********** PRIVATE PROPERTIES & FUNCTIONS **********/
 
 	// Get the columns from the dataset
-	private _columns = (ds: DataSet, totalWidth: number): IListColumn[] => {
+	private _columns = (ds: DataSet): IListColumn[] => {
 		let dataSet = ds;
 		let iColumns: IListColumn[] = [];
 

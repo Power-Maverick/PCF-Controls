@@ -49,6 +49,7 @@ export interface IListControlProps {
     columns: IListColumn[];
     hoveringColumns: string;
     totalResultCount: number;
+    allocatedWidth: number;
     triggerNavigate?: (id: string) => void;
     triggerPaging?: (pageCommand: string) => void;
     triggerSelection?: (selectedKeys: any[]) => void;
@@ -84,6 +85,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         super(props);
 
         this._totalWidth = this._totalColumnWidth(props.columns);
+        this._totalWidth = this._totalWidth > props.allocatedWidth ? this._totalWidth : props.allocatedWidth;
         this._hoveringColumns = this._parseHoveringColumns(props.hoveringColumns);
         this._totalRecords = props.totalResultCount;
 
@@ -157,7 +159,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return (
             <Sticky stickyPosition={StickyPositionType.Footer} isScrollSynced={true}>
                 <div className={classNames.listFooter}>
-                    <Label className={"listFooterLabel"}>{this.state._items.length.toString()} ({`${this.state._selectionCount} selected`})</Label>
+                    <Label className={"listFooterLabel"}>{`${this.state._selectionCount} selected`}</Label>
                     <CommandBar className={"cmdbar"} farItems={this._cmdBarFarItems} items={this._cmdBarItems} />
                 </div>
             </Sticky>
