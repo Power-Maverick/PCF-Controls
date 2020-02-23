@@ -125,7 +125,7 @@ export class HoverDetailsListControl implements ComponentFramework.StandardContr
 				fieldName: column.alias,
 				currentWidth: column.visualSizeFactor,
 				data: { isPrimary: column.isPrimary },
-				minWidth: 5,
+				minWidth: column.visualSizeFactor,
 				maxWidth: column.visualSizeFactor,
 				isResizable: true,
 				sortAscendingAriaLabel: 'A to Z',

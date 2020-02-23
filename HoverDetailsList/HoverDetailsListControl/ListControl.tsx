@@ -313,7 +313,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return (
             <Fabric>
                 <ScrollablePane scrollbarVisibility={ScrollbarVisibility.auto}>
-                    <div style = {styles.divWidth}>
+                    {/* <div style = {styles.divWidth}> */}
                         <DetailsList
                             setKey="parentcustomerid"
                             items={this.state._items}
@@ -331,7 +331,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
                             ariaLabelForSelectAllCheckbox="Toggle selection for all items"
                             checkButtonAriaLabel="Row checkbox"
                         />
-                    </div>
+                    {/* </div> */}
                 </ScrollablePane>
             </Fabric>
         );
