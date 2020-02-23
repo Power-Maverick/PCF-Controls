@@ -9,7 +9,7 @@ Configuration Property | Description | Required
 HoverCard Columns | Comma-separated columns that should show HoverCard | Yes
 
 ### Screenshot of the configuration
-Coming soon!
+![HoverDetailsList-Configuration](Others/Control-Configuration.png)
 
 ### Demo of the control
 [![HoverDetailsList-DemoVideo](https://img.youtube.com/vi/RunjPFiHBWQ/0.jpg)](https://www.youtube.com/watch?v=RunjPFiHBWQ)
