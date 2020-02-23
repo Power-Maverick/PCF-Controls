@@ -12,4 +12,4 @@ HoverCard Columns | Comma-separated columns that should show HoverCard | Yes
 Coming soon!
 
 ### Demo of the control
-Coming soon!
+[![HoverDetailsList-DemoVideo](https://img.youtube.com/vi/RunjPFiHBWQ/0.jpg)](https://www.youtube.com/watch?v=RunjPFiHBWQ)
