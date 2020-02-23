@@ -1,0 +1,14 @@
+.listFooterLabel {
+    color: #6E6F77;
+    font-size: 0.857143rem;
+    width: -webkit-fill-available;
+}
+.cmdbar {
+    width: -webkit-fill-available;
+}
+.cmdbar i {
+    font-size: 0.7rem;
+  }
+.cmdbar div {
+    height: 30px;
+}

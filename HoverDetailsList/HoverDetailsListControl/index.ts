@@ -5,13 +5,14 @@ import { ListControl, IListControlProps, IListControlState, IListData, IListColu
 import DataSetInterfaces = ComponentFramework.PropertyHelper.DataSetApi;
 type DataSet = ComponentFramework.PropertyTypes.DataSet;
 
-export class ExpandingDetailsListControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+export class HoverDetailsListControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	// React properties
 	private _props: IListControlProps = {
 		data: [],
 		columns: [],
-		expandingColumns: ""
+		hoveringColumns: "",
+		totalResultCount: 0
 	};
 
 	/**
@@ -71,13 +72,16 @@ export class ExpandingDetailsListControl implements ComponentFramework.StandardC
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
+		if (context.parameters.listDataSet.loading) return;
+
 		const dataSet = context.parameters.listDataSet;
 
 		let datasetColumns: IListColumn[] = this._columns(dataSet, context.mode.allocatedWidth === -1 ? 150 : context.mode.allocatedWidth);
 		let dataItems: IListData[] = this._items(dataSet, datasetColumns);
 		this._props.data = dataItems;
 		this._props.columns = datasetColumns;
-		this._props.expandingColumns = context.parameters.expandingColumns.raw || "";
+		this._props.hoveringColumns = context.parameters.hoveringColumns.raw || "";
+		this._props.totalResultCount = dataSet.paging.totalResultCount;
 
 		ReactDOM.render(
 			React.createElement(ListControl, this._props),

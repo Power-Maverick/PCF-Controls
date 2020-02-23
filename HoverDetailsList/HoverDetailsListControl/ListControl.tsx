@@ -4,10 +4,12 @@ import { Label } from 'office-ui-fabric-react/lib/Label';
 import { HoverCard, IPlainCardProps, HoverCardType } from 'office-ui-fabric-react/lib/HoverCard';
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
 import { ScrollablePane, ScrollbarVisibility } from 'office-ui-fabric-react/lib/ScrollablePane';
-import { DetailsList, IColumn, DetailsListLayoutMode, ConstrainMode, IDetailsFooterProps, Selection, SelectionMode } from 'office-ui-fabric-react/lib/DetailsList';
+import { DetailsList, IColumn, DetailsListLayoutMode, ConstrainMode, IDetailsFooterProps, Selection, SelectionMode, IDetailsHeaderProps } from 'office-ui-fabric-react/lib/DetailsList';
 import { mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { IRenderFunction } from 'office-ui-fabric-react/lib/Utilities';
 import { Sticky, StickyPositionType } from 'office-ui-fabric-react/lib/Sticky';
+import { CommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
+import { ITooltipHostProps, TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 
 //#region Style Constants
 
@@ -33,9 +35,9 @@ const classNames = mergeStyleSets({
         display: 'flex',
         padding: '1px'
     },
-    listFooterLabel: {
-        color: '#6E6F77',
-        fontSize: '0.857143rem'
+    cmdBarFarItems: {
+        fontSize: '0.857143rem',
+        
     }
 });
 
@@ -45,7 +47,8 @@ const classNames = mergeStyleSets({
 export interface IListControlProps {
     data: IListData[];
     columns: IListColumn[];
-    expandingColumns: string;
+    hoveringColumns: string;
+    totalResultCount: number;
     triggerNavigate?: (id: string) => void;
     triggerPaging?: (pageCommand: string) => void;
     triggerSelection?: (selectedKeys: any[]) => void;
@@ -70,30 +73,39 @@ export class ListControl extends React.Component<IListControlProps, IListControl
     //#region Global Variables
     private _selection: Selection;
     private _totalWidth: number;
-    private _expandingColumns: string[];
+    private _hoveringColumns: string[];
     //#endregion
+
+    private _cmdBarFarItems: ICommandBarItemProps[];
+    private _cmdBarItems: ICommandBarItemProps[];
+    private _totalRecords: number;
 
     constructor(props: IListControlProps) {
         super(props);
 
         this._totalWidth = this._totalColumnWidth(props.columns);
-        this._expandingColumns = this._parseExpandingColumns(props.expandingColumns);
+        this._hoveringColumns = this._parseHoveringColumns(props.hoveringColumns);
+        this._totalRecords = props.totalResultCount;
 
         this.state = {
             _items: props.data,
             _columns: this._buildColumns(props.columns),
             _triggerNavigate: props.triggerNavigate,
             _triggerSelection: props.triggerSelection,
-            _selectionDetails: 'No items selected'
+            _triggerPaging: props.triggerPaging,
+            _selectionCount: 0
         };
 
         this._selection = new Selection({
             onSelectionChanged: () => {
                 this.setState({
-                    _selectionDetails: this._setSelectionDetails(),
+                    _selectionCount: this._setSelectionDetails(),
                 });
             }
         });
+
+        this._cmdBarFarItems = this.renderCommandBarFarItem(props.data.length);
+        this._cmdBarItems = [];
     }
 
     public componentWillReceiveProps(newProps: IListControlProps): void {
@@ -102,6 +114,8 @@ export class ListControl extends React.Component<IListControlProps, IListControl
             _columns: this._buildColumns(newProps.columns)
         });
         this._totalWidth = this._totalColumnWidth(newProps.columns);
+
+        this._cmdBarFarItems = this.renderCommandBarFarItem(newProps.data.length);
     }
 
     //#region Private functions
@@ -131,11 +145,20 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         );
     };
 
+    private _onRenderDetailsHeader = (props: IDetailsHeaderProps | undefined, defaultRender?: IRenderFunction<IDetailsHeaderProps>): JSX.Element => {
+        return (
+          <Sticky stickyPosition={StickyPositionType.Header} isScrollSynced={true}>
+            {defaultRender!({...props!})}
+          </Sticky>
+        );
+      }
+
     private _onRenderDetailsFooter = (props: IDetailsFooterProps | undefined, defaultRender?: IRenderFunction<IDetailsFooterProps>): JSX.Element => {
         return (
             <Sticky stickyPosition={StickyPositionType.Footer} isScrollSynced={true}>
                 <div className={classNames.listFooter}>
-                    <Label className={classNames.listFooterLabel}>{this.state._items.length.toString()} ({this.state._selectionDetails})</Label>
+                    <Label className={"listFooterLabel"}>{this.state._items.length.toString()} ({`${this.state._selectionCount} selected`})</Label>
+                    <CommandBar className={"cmdbar"} farItems={this._cmdBarFarItems} items={this._cmdBarItems} />
                 </div>
             </Sticky>
         );
@@ -165,7 +188,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         });
     }
 
-    private _setSelectionDetails(): string {
+    private _setSelectionDetails(): number {
         let selectedKeys = [];
         let selections = this._selection.getSelection();
         for (let selection of selections) {
@@ -176,15 +199,40 @@ export class ListControl extends React.Component<IListControlProps, IListControl
 
         switch (selectedKeys.length) {
             case 0:
-                return 'No items selected';
+                return 0;
             default:
-                return `${selectedKeys.length} items selected`;
+                return selectedKeys.length;
         }
     }
 
     private _sort = <T, >(items: T[], columnKey: string, isSortedDescending?: boolean): T[] =>  {
         let key = columnKey as keyof T;
         return items.slice(0).sort((a: T, b: T) => ((isSortedDescending ? a[key] < b[key] : a[key] > b[key]) ? 1 : -1));
+    }
+
+    private renderCommandBarFarItem(recordsLoaded: number): ICommandBarItemProps[]
+    {
+        return [
+            {
+                key: 'next',
+                text: (recordsLoaded == this._totalRecords) 
+                        ? `${recordsLoaded} of ${this._totalRecords}` 
+                        : `Load more (${recordsLoaded} of ${this._totalRecords})`,
+                ariaLabel: 'Next',
+                iconProps: { iconName: 'ChevronRight' },
+                disabled: recordsLoaded == this._totalRecords,
+                className: classNames.cmdBarFarItems,
+                onClick: () => {
+                    if (this.state._triggerPaging) {
+                        this.state._triggerPaging("next");
+                    }
+                }
+            }
+        ];
+    }
+
+    private _onItemInvoked(item: any): void {
+        this.state._triggerNavigate(item.key);
     }
 
     private _buildColumns(listData: IListColumn[]): IColumn[] {
@@ -215,17 +263,17 @@ export class ListControl extends React.Component<IListControlProps, IListControl
                     <Link key={item.key} onClick={() => this.state._triggerNavigate(item.key)}>{item[column?.fieldName!]}</Link>
                 );
             }
-            else if(column.dataType === 'Email'){
+            else if(column.dataType === "Email"){
                 iColumn.onRender = (item: any, index: number | undefined, column: IColumn | undefined)=> (                                    
-                    <Link href={'mailto:${item[column?.fieldName!]}'} >{item[column?.fieldName!]}</Link>  
+                    <Link href={`mailto:${item[column?.fieldName!]}`} >{item[column?.fieldName!]}</Link>  
                 );
             }
-            else if(column.dataType === 'Phone'){
+            else if(column.dataType === "Phone"){
                 iColumn.onRender = (item: any, index: number | undefined, column: IColumn | undefined) => (                                    
-                    <Link href={'skype:${item[column?.fieldName!]}?call'} >{item[column!.fieldName!]}</Link>                    
+                    <Link href={`skype:${item[column?.fieldName!]}?call`} >{item[column!.fieldName!]}</Link>                    
                 );
             }
-            else if(this._expandingColumns && this._expandingColumns.includes(column.key)){
+            else if(this._hoveringColumns && this._hoveringColumns.includes(column.key)){
                 iColumn.onRender = this._onRenderShowPlainHoverCard;
             }
 
@@ -246,7 +294,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return totalColumnWidth + 100;
     }
 
-    private _parseExpandingColumns(commaSeparatedString: string): string[]
+    private _parseHoveringColumns(commaSeparatedString: string): string[]
     {
         return commaSeparatedString.split(",");
     }
@@ -271,9 +319,11 @@ export class ListControl extends React.Component<IListControlProps, IListControl
                             onColumnHeaderClick={this._onColumnClick}
                             layoutMode={DetailsListLayoutMode.justified}
                             constrainMode={ConstrainMode.unconstrained}
+                            onItemInvoked={this._onItemInvoked}
                             selection={this._selection}
                             selectionPreservedOnEmptyClick={true}
                             selectionMode={SelectionMode.multiple}
+                            onRenderDetailsHeader={this._onRenderDetailsHeader}
                             onRenderDetailsFooter={this._onRenderDetailsFooter} 
                             ariaLabelForSelectionColumn="Toggle selection"
                             ariaLabelForSelectAllCheckbox="Toggle selection for all items"
