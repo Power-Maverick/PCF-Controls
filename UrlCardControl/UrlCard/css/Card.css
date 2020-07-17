@@ -1,0 +1,13 @@
+/**** Maverick Custom CSS ****/
+.imageCardItem {
+    width: 35% !important;
+    margin: 2px 0px 2px 0px;
+}
+
+.imageItem img {
+    width: 100% !important;
+}
+
+.mainStack {
+    width: 99% !important;
+}
