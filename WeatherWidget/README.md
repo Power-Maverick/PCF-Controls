@@ -1,4 +1,7 @@
 # Weather Widget
+
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Weather%20Widget&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/Weather-v.1.0.0)
+
 A fully configurable PCF control that uses Open Weather Data API to show current as well as 5 day/3 hour weather forecast.
 
 ### Configure the control

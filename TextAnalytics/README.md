@@ -1,4 +1,7 @@
 # TextAnalytics
+
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Text%20Analyser&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/TextAnalyser-v.1.0.0)
+
 A fully configurable PCF control that uses Azure Text Analytics Cognitive Service to evaluate Sentiment, Language, Key Phrases and Entities from a Text.
 
 ### Configure the control

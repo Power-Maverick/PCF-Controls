@@ -1,4 +1,7 @@
 # URL Preview Card
+
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=URL%20Preview%20Card&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/UrlPreview-v.1.0.9)
+
 No effort URL Preview Card that displays the URL metadata like title, description, domain & image information as a card.
 
 ### Configure the control

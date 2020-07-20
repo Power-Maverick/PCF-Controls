@@ -1,4 +1,7 @@
 # Hover Details List Control
+
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Hover%20Details%20List&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/Hover-v.1.0.0)
+
 A fully configurable PCF dataset control that is built using HoverCard and Details List utilizing React and Office UI Fabric.
 
 ### Configure the control
