@@ -10,14 +10,12 @@ Control has 1 configuration properities which are described below:
 
 Configuration Property | Description | Required
 ------------ | ------------- | -------------
-Maximum Character Limit | Define the maximum number of characters allowed on this control. Default is 100. | No
+Maximum Character Limit | Define the maximum number of characters allowed on this control. Default is 100. | Yes
 
-### Screenshot of the configuration
+### Screenshot
 
-Will be added later
-<!-- ![TextAnalytics-Configuration](Others/TextAnalytics-Configuration.png) -->
+![Configuration](assets/screenshot.gif)
 
 ### Demo of the control
 
-Will be added later
-<!-- [![TextAnalytics-DemoVideo](https://img.youtube.com/vi/Vksv9q2uMZw/0.jpg)](https://www.youtube.com/watch?v=Vksv9q2uMZw&start=120&end=360) -->
+[![DemoVideo](https://img.youtube.com/vi/UFqKLhK7hf8/0.jpg)](https://www.youtube.com/watch?v=UFqKLhK7hf8)
