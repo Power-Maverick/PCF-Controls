@@ -1,0 +1,10 @@
+{
+  "generator-pcf": {
+    "controlNamespace": "Maverick.Controls",
+    "controlName": "CleverCharacterCounter",
+    "controlTemplate": "field",
+    "npmPackage": 1,
+    "publisherPrefix": "pmav",
+    "publisherName": "powermaverick"
+  }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="CleverCharacterCounter" version="0.0.1" display-name-key="Clever Character Counter" description-key="Count downs the number of remaining character in a Twitter style" control-type="standard" preview-image="img/preview.gif" >
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="BoundControlInput" display-name-key="Input for Character Counter" description-key="Bind an input control for which you want to count the characters" of-type-group="supportedTypes" usage="bound" required="true" />
+    <property name="MaximumCharacterLimit" display-name-key="Maximum Character Limit" description-key="Define the maximum number of characters allowed on this control" default-value="100" of-type="Whole.None" usage="input" required="true" />
+    
+    <type-group name="supportedTypes">
+      <type>SingleLine.Text</type>
+      <type>SingleLine.TextArea</type>
+      <type>Multiple</type>
+    </type-group>
+    
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/CleverCharacterCounter.css" order="1" />
+      <css path="css/CircularProgressbar.css" order="1" />
+      <resx path="strings/CleverCharacterCounter.1033.resx" version="1.0.0" />
+    </resources>
+    <!-- UNCOMMENT TO ENABLE THE SPECIFIED API
+    <feature-usage>
+      <uses-feature name="Device.captureAudio" required="true" />
+      <uses-feature name="Device.captureImage" required="true" />
+      <uses-feature name="Device.captureVideo" required="true" />
+      <uses-feature name="Device.getBarcodeValue" required="true" />
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Device.pickFile" required="true" />
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+    -->
+  </control>
+</manifest>

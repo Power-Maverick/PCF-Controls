@@ -1,0 +1,12 @@
+.cpbWrapperDiv{
+    margin-top: 5px !important;
+    display: flex;
+    align-self: flex-end;
+    width: 6%;
+}
+
+.cpbMainDiv{
+    /* width: 10%; */
+    /* padding-right: 30px; */
+    display: contents;
+}
