@@ -1,6 +1,6 @@
 # Clever Character Counter
 
-<!-- [![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Text%20Analyser&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/TextAnalyser-v.1.0.0) -->
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Character%20Counter&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/CharCount-v.1.0.6)
 
 PCF control that count downs the number of characters remaining w.r.t. a given limit in a Twitter style circular progressbar. And shows a callout indicator when user goes beyond the limit to catch it's attention.
 
