@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="InlineTextInputControl" version="0.0.1" display-name-key="InlineTextInputControl" description-key="InlineTextInputControl description" control-type="standard" preview-image="img/preview.png">
+    <property name="htmlPreviewText" display-name-key="HtmlPreview_Display_Key" description-key="HtmlPreview_Desc_Key" of-type-group="supportedTypes" usage="bound" required="true"/>
+    <property name="replacementConfig" display-name-key="ReplacementConfig_Display_Key" description-key="ReplacementConfig_Desc_Key" of-type="Multiple" usage="input" required="true"/>
+
+    <type-group name="supportedTypes">
+      <type>SingleLine.Text</type>
+      <type>SingleLine.TextArea</type>
+      <type>Multiple</type>
+    </type-group>
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/InlineTextInputControl.css" order="1"/>
+      <resx path="strings/InlineTextInputControl.1033.resx" version="1.0.0"/>
+    </resources>
+  </control>
+</manifest>
