@@ -1,3 +1,5 @@
+[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/Power-Maverick)
+
 # PCF-Controls
 
 Repos of all my Powerapps Component Framework (PCF) Controls.
@@ -45,6 +47,6 @@ PCF control that count downs the number of characters remaining w.r.t. a given l
 
 ## Donate
 
-If you liked my free PCF custom controls then consider donating.
+If you liked my free PCF custom controls then consider sponsoring this project.
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=XK4SZ82J6GFH6&item_name=Power+Maverick+Donation&currency_code=USD&source=github)
+[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/Power-Maverick)
