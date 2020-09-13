@@ -3,6 +3,7 @@
   <control namespace="Maverick.Controls" constructor="InlineTextInputControl" version="0.0.1" display-name-key="InlineTextInputControl" description-key="InlineTextInputControl description" control-type="standard" preview-image="img/preview.png">
     <property name="htmlPreviewText" display-name-key="HtmlPreview_Display_Key" description-key="HtmlPreview_Desc_Key" of-type-group="supportedTypes" usage="bound" required="true"/>
     <property name="replacementConfig" display-name-key="ReplacementConfig_Display_Key" description-key="ReplacementConfig_Desc_Key" of-type="Multiple" usage="input" required="true"/>
+    <property name="fontSize" display-name-key="fontSize_Display_Key" description-key="fontSize_Desc_Key" of-type="Whole.None" usage="input" required="false" default-value="14"/>
 
     <type-group name="supportedTypes">
       <type>SingleLine.Text</type>

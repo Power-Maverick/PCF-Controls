@@ -12,6 +12,7 @@ export class InlineTextInputControl implements ComponentFramework.StandardContro
 	private props: IControlProps = {
 		text: "",
 		slugs: 	[],
+		fontSize: 14,
 		relayUpdates: this.getChangedDataFromReactComponent.bind(this)
 	};
 
@@ -71,6 +72,7 @@ export class InlineTextInputControl implements ComponentFramework.StandardContro
 		});
 
 		this.props.text = context.parameters.htmlPreviewText.raw ?? "";
+		this.props.fontSize = context.parameters.fontSize.raw ?? 14;
 		this.renderReactDOM(this);
 	}
 

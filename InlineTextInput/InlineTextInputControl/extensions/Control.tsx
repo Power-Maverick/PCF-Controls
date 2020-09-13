@@ -5,6 +5,7 @@ import InlineEdit from "./InlineEdit"
 export interface IControlProps {
     text: string;
     slugs: ISlug[];
+    fontSize: number;
     relayUpdates: (keyToReplace: string, newText: string) => void;
 }
 
@@ -57,7 +58,7 @@ const Control = (props: IControlProps): JSX.Element => {
     }
 
     return (
-        <div className="App">
+        <div style={{fontSize: props.fontSize}}>
             {
                 rows.map((ele: React.ReactElement) => (
                     ele
