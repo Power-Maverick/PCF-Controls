@@ -58,10 +58,24 @@
 <resheader name="writer">
 <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 </resheader>
-<data name="Control_Display_Name_Key" xml:space="preserve">
-    <value>Control Name</value>
+<data name="HtmlPreview_Display_Key" xml:space="preserve">
+    <value>HTML Preview Text</value>
 </data>
-<data name="Control_Description_Key" xml:space="preserve">
-    <value>Control Description</value>
+<data name="HtmlPreview_Desc_Key" xml:space="preserve">
+    <value>HTML text that needs to be previewed along with slugs</value>
+</data>
+
+<data name="ReplacementConfig_Display_Key" xml:space="preserve">
+    <value>Slugs Replacement Config</value>
+</data>
+<data name="ReplacementConfig_Desc_Key" xml:space="preserve">
+    <value>A JSON string that will define which words to find, replace and make then editable</value>
+</data>
+
+<data name="fontSize_Display_Key" xml:space="preserve">
+    <value>Font Size</value>
+</data>
+<data name="fontSize_Desc_Key" xml:space="preserve">
+    <value>A default font size that the control should render</value>
 </data>
 </root>

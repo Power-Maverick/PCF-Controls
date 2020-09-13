@@ -12,3 +12,6 @@
 # msbuild output directories
 /bin
 /obj
+
+# CDS solution file
+**/Solutions
