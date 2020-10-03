@@ -4,6 +4,8 @@
 
 PCF control that displays clocks with different timezones based on the configuration and selection. Time is converted from user's timezone setting. Configuration can be from 1 timezone clock displayed to maximum of 3 clocks.
 
+Timezone selection is based on [IANA name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+
 ### Configurations
 
 Control has 5 configuration properities which are described below:
@@ -23,3 +25,10 @@ Control has 5 configuration properities which are described below:
 ### Demo of the control
 
 [![DemoVideo](https://img.youtube.com/vi/JTnEdIK9IjY/0.jpg)](https://www.youtube.com/watch?v=JTnEdIK9IjY)
+
+### Ideas for additional features
+
+- Instead of IANA name use friendly timezone names like EST, PST, IST, etc. or city names
+- Display DayTime savings
+
+> If you have any feature request then please create an issue with tag: `Timezone`
