@@ -4,7 +4,7 @@
 
 Repos of all my Powerapps Component Framework (PCF) Controls.
 
-> All controls are created using [PCF Builder](https://github.com/Power-maveRICK/PCF-CustomControlBuilder)
+> All controls are created using a combination of **PCF Builder** for [XrmToolBox](https://github.com/Power-maveRICK/PCF-CustomControlBuilder) and [VSCode](https://github.com/Power-Maverick/PCF-Builder-VSCode)
 
 ## Overview
 
