@@ -9,12 +9,12 @@ PCF control that displays clocks with different timezones based on the configura
 Control has 5 configuration properities which are described below:
 
 | Field | Description | Required |
-| - | - | - | :-: |
+| - | - | :-: |
 | User Selected DateTime | A selected DateTime with respect to user&#39;s timezone | :heavy_check_mark: |
 | Default Timezone #1 | Default Timezone #1 | :x: |
 | Default Timezone #2 | Default Timezone #2 | :x: |
 | Default Timezone #3 | Default Timezone #3 | :x: |
-| Number of Timezones to Display | Select how many timezone options you want to dsiplay |   :x: |
+| Number of Timezones to Display | Select how many timezone options you want to dsiplay | :x: |
 
 ### Screenshot
 
