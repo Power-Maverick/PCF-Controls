@@ -1,0 +1,60 @@
+.Maverick.Controls\.TimezoneConverter img{
+    max-width: -webkit-fill-available;
+    min-width: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.Maverick.Controls\.TimezoneConverter .flex {
+    display: table;
+    width:100%;
+}
+
+.Maverick.Controls\.TimezoneConverter .flex div {
+    display:inline-table;
+    text-align:center;
+}
+
+.analog-clock {
+    width: 100px;
+    height: 100px;
+    border: solid 2px #000;
+    border-radius: 50%;
+    position: relative;
+    background: #fff;
+}
+
+.digital-clock {
+    top: 60px;
+    position: absolute;
+    left: 25px;
+}
+
+.dial {
+    position: absolute;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    transform-origin: bottom left;
+}
+
+.seconds {
+    border-left:solid 1px green;
+}
+.minutes {
+    border-left:solid 2px #000;
+    width: 45px;
+    height: 45px;
+    top: 5px;
+}
+.hours {
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    border-left:solid 4px #000;
+}
+
+.today-tomorrow {
+    display: block !important;
+}

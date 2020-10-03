@@ -1,0 +1,7 @@
+{
+  "generator-pcf": {
+    "controlNamespace": "Maverick.Controls",
+    "controlName": "TimezoneConverter",
+    "controlTemplate": "field"
+  }
+}

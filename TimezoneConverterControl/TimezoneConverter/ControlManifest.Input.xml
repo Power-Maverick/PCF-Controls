@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="TimezoneConverter" version="0.0.1" display-name-key="TimezoneConverter" description-key="TimezoneConverter description" control-type="standard" preview-image="img/preview.png">
+    <property name="UserDateTime" display-name-key="UserDate_Display_Key" description-key="UserDate_Desc_Key" of-type="DateAndTime.DateAndTime" usage="bound" required="true"/>
+
+    <property name="DefaultTimezone1" display-name-key="Default Timezone #1" description-key="Default Timezone #1" of-type="Enum" usage="input" required="false">
+      <value name="New_York" display-name-key="New York">America/New_York</value>
+      <value name="Shanghai" display-name-key="Shanghai">Asia/Shanghai</value>
+      <value name="Adelaide" display-name-key="Adelaide">Australia/Adelaide</value>
+      <value name="Kolkata" display-name-key="Kolkata">Asia/Kolkata</value>
+      <value name="London" display-name-key="London">Europe/London</value>
+      <value name="Berlin" display-name-key="Berlin">Europe/Berlin</value>
+      <value name="Tokyo" display-name-key="Tokyo">Asia/Tokyo</value>
+    </property>
+
+    <property name="DefaultTimezone2" display-name-key="Default Timezone #2" description-key="Default Timezone #2" of-type="Enum" usage="input" required="false">
+      <value name="New_York" display-name-key="New York">America/New_York</value>
+      <value name="Shanghai" display-name-key="Shanghai">Asia/Shanghai</value>
+      <value name="Adelaide" display-name-key="Adelaide">Australia/Adelaide</value>
+      <value name="Kolkata" display-name-key="Kolkata">Asia/Kolkata</value>
+      <value name="London" display-name-key="London">Europe/London</value>
+      <value name="Berlin" display-name-key="Berlin">Europe/Berlin</value>
+      <value name="Tokyo" display-name-key="Tokyo">Asia/Tokyo</value>
+    </property>
+
+    <property name="DefaultTimezone3" display-name-key="Default Timezone #3" description-key="Default Timezone #3" of-type="Enum" usage="input" required="false">
+      <value name="New_York" display-name-key="New York">America/New_York</value>
+      <value name="Shanghai" display-name-key="Shanghai">Asia/Shanghai</value>
+      <value name="Adelaide" display-name-key="Adelaide">Australia/Adelaide</value>
+      <value name="Kolkata" display-name-key="Kolkata">Asia/Kolkata</value>
+      <value name="London" display-name-key="London">Europe/London</value>
+      <value name="Berlin" display-name-key="Berlin">Europe/Berlin</value>
+      <value name="Tokyo" display-name-key="Tokyo">Asia/Tokyo</value>
+    </property>
+
+    <property name="NumberOfTimezoneDisplay" display-name-key="Number of Timezones to Display" description-key="Select how many timezone options you want to dsiplay" of-type="Enum" usage="input" required="false">
+      <value name="All" display-name-key="All">All</value>
+      <value name="One" display-name-key="One">1</value>
+      <value name="Two" display-name-key="Two">2</value>
+    </property>
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/TimezoneConverter.css" order="1"/>
+      <resx path="strings/TimezoneConverter.1033.resx" version="1.0.0"/>
+    </resources>
+  </control>
+</manifest>
