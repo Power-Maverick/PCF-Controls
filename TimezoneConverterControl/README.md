@@ -1,4 +1,4 @@
-# Clever Character Counter
+# Timezone Converter
 
 [![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Timezone%20Converter&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/Timezone-v.1.0.6)
 
