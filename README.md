@@ -12,6 +12,31 @@ All controls will have their own folder. Unmanaged solution file for each contro
 
 ---
 
+- [PCF-Controls](#pcf-controls)
+  - [Overview](#overview)
+  - [Become a sponsor](#become-a-sponsor)
+  - [PCF Controls Collection](#pcf-controls-collection)
+      - [Text Analytics](#text-analytics)
+      - [Weather Widget](#weather-widget)
+      - [Hover Details List Control](#hover-details-list-control)
+      - [URL Preview Card](#url-preview-card)
+      - [Clever Character Counter](#clever-character-counter)
+      - [Inline Text Editor](#inline-text-editor)
+      - [Timezone Converter](#timezone-converter)
+      - [Flexible Ordering List](#flexible-ordering-list)
+
+---
+
+## Become a sponsor
+
+If you liked my free PCF custom controls then consider sponsoring this project.
+
+[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/Power-Maverick)
+
+---
+
+## PCF Controls Collection
+
 #### Text Analytics
 
 A fully configurable control that uses Azure Text Analytics Cognitive Service to evaluate Sentiment, Language, Key Phrases and Entities from a Text.
@@ -82,8 +107,11 @@ PCF control that displays clocks with different timezones based on the configura
 
 ---
 
-## Become a sponsor
+#### Flexible Ordering List
 
-If you liked my free PCF custom controls then consider sponsoring this project.
+PCF control that helps the user sets their own ordering on the records by using drag & drop feature. It has auto-save as well as manual save feature.
 
-[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/Power-Maverick)
+![GitHub Releases](https://img.shields.io/static/v1?label=New&message=Coming%20Soon&style=for-the-badge&logo=JSONWebTokens&color=brightgreen)
+
+
+
