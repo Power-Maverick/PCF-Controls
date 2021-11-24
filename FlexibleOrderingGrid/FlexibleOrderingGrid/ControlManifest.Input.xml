@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Maverick.Controls" constructor="FlexibleOrderingGrid" version="0.0.8" display-name-key="Flexible Ordering Grid" description-key="A detail list that allows users to use drag-n-drop feature to sort the data in the list." control-type="standard" preview-image="img/preview.png">
+  <control namespace="Maverick.Controls" constructor="FlexibleOrderingGrid" version="1.0.2" display-name-key="Flexible Ordering Grid" description-key="A detail list that allows users to use drag-n-drop feature to sort the data in the list." control-type="standard" preview-image="img/preview.png">
     <data-set name="listDataSet" display-name-key="Flexible Ordering Dataset" cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFindSearch:true">
       <property-set name="orderColumn" display-name-key="Order Column" description-key="Field that will define the ordering of the data" usage="bound" required="true" of-type="Whole.None" />
     </data-set>
