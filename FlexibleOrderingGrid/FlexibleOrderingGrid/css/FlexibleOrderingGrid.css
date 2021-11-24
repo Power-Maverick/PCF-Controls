@@ -1,7 +1,31 @@
-.Maverick.Controls\.FlexibleOrderingGrid img {
-    max-width: -webkit-fill-available;
-    min-width: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.Maverick.Controls\.FlexibleOrderingGrid .footer {
+    display: flex;
+    padding: 1px;
+    margin-top: 5px;
 }
+
+.Maverick.Controls\.FlexibleOrderingGrid .footerLabel {
+    width: 70px;
+    margin-top: 10px;
+}
+
+.Maverick.Controls\.FlexibleOrderingGrid .footerSave {
+    margin-left: 10px;
+}
+.Maverick.Controls\.FlexibleOrderingGrid .footerUnsavedChanges {
+    color: rgb(102, 102, 102);
+    font-size: 12px;
+    font-weight: 500;
+    width: 120px;
+    margin-left: 18px;
+}
+
+.Maverick.Controls\.FlexibleOrderingGrid .footerCmdBar {
+    width: -webkit-fill-available;
+}
+/* .Maverick.Controls\.FlexibleOrderingGrid .footerCmdBar i {
+    font-size: 0.7rem;
+}
+.Maverick.Controls\.FlexibleOrderingGrid .footerCmdBar div {
+    height: 30px;
+} */

@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Maverick.Controls" constructor="FlexibleOrderingGrid" version="0.0.7" display-name-key="Flexible Ordering Grid" description-key="A detail list that allows users to use drag-n-drop feature to sort the data in the list." control-type="standard" preview-image="img/preview.png">
+  <control namespace="Maverick.Controls" constructor="FlexibleOrderingGrid" version="0.0.8" display-name-key="Flexible Ordering Grid" description-key="A detail list that allows users to use drag-n-drop feature to sort the data in the list." control-type="standard" preview-image="img/preview.png">
     <data-set name="listDataSet" display-name-key="Flexible Ordering Dataset" cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFindSearch:true">
       <property-set name="orderColumn" display-name-key="Order Column" description-key="Field that will define the ordering of the data" usage="bound" required="true" of-type="Whole.None" />
     </data-set>
+    <property name="autoSave" display-name-key="Auto-Save Ordering" description-key="Automatically saves the ordering of the records in the grid" of-type="Enum" usage="input" default-value="0" required="false">
+      <value name="Yes" display-name-key="Yes">0</value>
+      <value name="No" display-name-key="No">1</value>
+    </property>
     <resources>
       <code path="index.ts" order="1" />
       <css path="css/FlexibleOrderingGrid.css" order="1" />
       <resx path="strings/FlexibleOrderingGrid.1033.resx" version="1.0.0" />
     </resources>
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
   </control>
 </manifest>

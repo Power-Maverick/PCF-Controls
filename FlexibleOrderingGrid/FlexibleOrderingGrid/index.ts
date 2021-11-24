@@ -13,6 +13,7 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
     private theContainer: HTMLDivElement;
     private theNotifyOutputChanged: () => void;
     private theContext: ComponentFramework.Context<IInputs>;
+    private theOrderColumn: IListColumn;
 
     /**
      * HTML Attributes
@@ -23,9 +24,10 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
     private _props: IListControlProps = {
         data: [],
         columns: [],
-        hoveringColumns: "",
         totalResultCount: 0,
         allocatedWidth: 0,
+        enableAutoSave: false,
+        isSaving: false,
     };
 
     /**
@@ -46,6 +48,11 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
         this.theContainer = container;
         this.theContext = context;
 
+        this._props.triggerNavigate = this.navigateToRecord.bind(this);
+        this._props.triggerPaging = this.navigateToPage.bind(this);
+        this._props.triggerSelection = this.recordSelection.bind(this);
+        this._props.triggerUpdate = this.updateRecords.bind(this);
+
         context.mode.trackContainerResize(true);
         this.theContainer.style.position = "relative";
 
@@ -53,7 +60,7 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
         this.divDetailListWrapper.setAttribute("id", "detailListLocal");
         this.divDetailListWrapper.setAttribute("data-is-scrollable", "true");
         let rowspan = (this.theContext.mode as any).rowSpan;
-        let height = rowspan * 2 + 4 /*Header*/ + 4; /*Footer*/
+        let height = rowspan * 2 + /*Header*/ 4 + /*Footer*/ 4 + /*Margin*/ 2;
         if (rowspan) {
             this.divDetailListWrapper.style.height = `${height}em`;
         } else {
@@ -73,14 +80,22 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
         const dataSet = context.parameters.listDataSet;
 
         let datasetColumns: IListColumn[] = this._columns(dataSet);
-        let dataItems: IListData[] = this._items(dataSet, datasetColumns);
+        this._props.orderColumn = datasetColumns.find((c) => {
+            return c.fieldName === "orderColumn";
+        });
+        if (this._props.orderColumn) {
+            this.theOrderColumn = this._props.orderColumn;
+        }
+
+        let dataItems: IListData[] = this._items(dataSet, datasetColumns, this.theOrderColumn);
         this._props.allocatedWidth = context.mode.allocatedWidth === -1 ? 0 : context.mode.allocatedWidth;
         this._props.data = dataItems;
         this._props.columns = datasetColumns;
-        //this._props.hoveringColumns = context.parameters.orderColumnName.raw || "";
         this._props.totalResultCount = dataSet.paging.totalResultCount;
+        this._props.enableAutoSave = context.parameters.autoSave.raw === "0" ? true : false;
 
-        ReactDOM.render(React.createElement(ListControl, this._props), this.divDetailListWrapper);
+        this.renderReactDOM();
+        //ReactDOM.render(React.createElement(ListControl, this._props), this.divDetailListWrapper);
     }
 
     /**
@@ -100,6 +115,14 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
     }
 
     //#region **********PRIVATE PROPERTIES & FUNCTIONS**********
+
+    private renderReactDOM(): void {
+        ReactDOM.render(
+            // Create the React component
+            React.createElement(ListControl, this._props),
+            this.divDetailListWrapper,
+        );
+    }
 
     // Get the columns from the dataset
     private _columns = (ds: DataSet): IListColumn[] => {
@@ -144,29 +167,33 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
     };
 
     // Get the items from the dataset
-    private _items = (ds: DataSet, _columns: IListColumn[]) => {
+    private _items = (ds: DataSet, _columns: IListColumn[], orderColumn: IListColumn) => {
         let dataSet = ds;
 
-        var resultSet = dataSet.sortedRecordIds.map(function (key) {
-            var record = dataSet.records[key];
-            var newRecord: any = {
-                key: record.getRecordId(),
-            };
+        var resultSet = dataSet.sortedRecordIds
+            .map(function (key) {
+                var record = dataSet.records[key];
+                var newRecord: any = {
+                    key: record.getRecordId(),
+                };
 
-            for (var column of _columns) {
-                newRecord[column.key] = record.getFormattedValue(column.key);
-                /*let checkER: any = record.getValue(column.key);
-				if (typeof checkER?.etn === 'string') {
-					var ref = record.getValue(column.key) as ComponentFramework.EntityReference;
-					newRecord[column.key + '_ref'] = ref;
-				}
-				else if (column.data.isPrimary) {
-					newRecord[column.key + '_ref'] = record.getNamedReference();
-				}*/
-            }
+                for (var column of _columns) {
+                    newRecord[column.key] = record.getFormattedValue(column.key);
+                }
 
-            return newRecord;
-        });
+                return newRecord;
+            })
+            .sort((i1, i2) => {
+                let first: number = parseInt(i1[orderColumn.key]);
+                let second: number = parseInt(i2[orderColumn.key]);
+                if (first > second) {
+                    return 1;
+                }
+                if (first < second) {
+                    return -1;
+                }
+                return 0;
+            });
 
         return resultSet;
     };
@@ -196,7 +223,25 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
     }
 
     private recordSelection(selectedKeys: any[]): void {
-        this.theContext.parameters.listDataSet.setSelectedRecordIds(selectedKeys);
+        // TODO: Handle this with ordering
+        //this.theContext.parameters.listDataSet.setSelectedRecordIds(selectedKeys);
+    }
+
+    private async updateRecords(listItems: any[]): Promise<void> {
+        let entityName: string = this.theContext.parameters.listDataSet.getTargetEntityType();
+        for (let o = 0; o < listItems.length; o++) {
+            const item = listItems[o];
+            listItems[o][this.theOrderColumn.key] = o;
+
+            let updateOrderData: ComponentFramework.WebApi.Entity = {};
+            updateOrderData[this.theOrderColumn.key] = o;
+
+            await this.theContext.webAPI.updateRecord(entityName, item.key, updateOrderData);
+        }
+
+        this._props.data = listItems;
+        this._props.isSaving = false;
+        this.renderReactDOM();
     }
 
     //#endregion

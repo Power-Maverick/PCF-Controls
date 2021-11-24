@@ -1,47 +1,22 @@
 import * as React from "react";
 import { Link } from "@fluentui/react/lib/Link";
 import { Label } from "@fluentui/react/lib/Label";
-import { HoverCard, IPlainCardProps, HoverCardType } from "@fluentui/react/lib/HoverCard";
 import { ScrollablePane, ScrollbarVisibility } from "@fluentui/react/lib/ScrollablePane";
 import { DetailsList, IColumn, DetailsListLayoutMode, ConstrainMode, IDetailsFooterProps, Selection, SelectionMode, IDetailsHeaderProps, IDragDropEvents, IDragDropContext } from "@fluentui/react/lib/DetailsList";
 import { getTheme, mergeStyles, mergeStyleSets } from "@fluentui/react/lib/Styling";
 import { IRenderFunction } from "@fluentui/react/lib/Utilities";
 import { Sticky, StickyPositionType } from "@fluentui/react/lib/Sticky";
 import { CommandBar, ICommandBarItemProps } from "@fluentui/react/lib/CommandBar";
-import { ITooltipHostProps, TooltipHost } from "@fluentui/react/lib/Tooltip";
 import { ThemeProvider } from "@fluentui/react/lib/Theme";
-import ErrorBoundary from "./ErrorBoundary";
+import { initializeIcons } from "@fluentui/react/lib/Icons";
+import { FontIcon, Icon, Spinner } from "@fluentui/react";
+
+// Initialize icons in case this example uses them
+initializeIcons();
 
 //#region Style Constants
 
 const theme = getTheme();
-const classNames = mergeStyleSets({
-    plainCard: {
-        width: 400,
-        //height: 600,
-        padding: "20px 10px",
-        height: "auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        whiteSpace: "pre-wrap",
-    },
-    item: {
-        selectors: {
-            "&:hover": {
-                cursor: "pointer",
-            },
-        },
-    },
-    listFooter: {
-        display: "flex",
-        padding: "1px",
-    },
-    cmdBarFarItems: {
-        fontSize: "0.857143rem",
-    },
-});
-
 const dragEnterClass = mergeStyles({
     backgroundColor: theme.palette.neutralLight,
 });
@@ -52,12 +27,15 @@ const dragEnterClass = mergeStyles({
 export interface IListControlProps {
     data: IListData[];
     columns: IListColumn[];
-    hoveringColumns: string;
+    orderColumn?: IListColumn;
     totalResultCount: number;
     allocatedWidth: number;
+    enableAutoSave: boolean;
+    isSaving: boolean;
     triggerNavigate?: (id: string) => void;
     triggerPaging?: (pageCommand: string) => void;
     triggerSelection?: (selectedKeys: any[]) => void;
+    triggerUpdate?: (records: any[]) => void;
 }
 
 export interface IListData {
@@ -92,7 +70,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
 
         this._totalWidth = this._totalColumnWidth(props.columns);
         this._totalWidth = this._totalWidth > props.allocatedWidth ? this._totalWidth : props.allocatedWidth;
-        this._hoveringColumns = this._parseHoveringColumns(props.hoveringColumns);
+        //this._hoveringColumns = this._parseHoveringColumns(props.orderColumn);
         this._dragDropEvents = this._getDragDropEvents();
         this._totalRecords = props.totalResultCount;
 
@@ -102,7 +80,10 @@ export class ListControl extends React.Component<IListControlProps, IListControl
             _triggerNavigate: props.triggerNavigate,
             _triggerSelection: props.triggerSelection,
             _triggerPaging: props.triggerPaging,
+            _triggerUpdate: props.triggerUpdate,
             _selectionCount: 0,
+            _isSaving: props.isSaving,
+            _unsavedChanged: false,
         };
 
         this._selection = new Selection({
@@ -113,43 +94,22 @@ export class ListControl extends React.Component<IListControlProps, IListControl
             },
         });
 
+        this._cmdBarItems = this.renderCommandBarItems(this.props.enableAutoSave);
         this._cmdBarFarItems = this.renderCommandBarFarItem(props.data.length);
-        this._cmdBarItems = [];
     }
 
     public componentWillReceiveProps(newProps: IListControlProps): void {
         this.setState({
             _items: newProps.data,
             _columns: this._buildColumns(newProps.columns),
+            _isSaving: newProps.isSaving,
         });
         this._totalWidth = this._totalColumnWidth(newProps.columns);
-
+        this._cmdBarItems = this.renderCommandBarItems(this.props.enableAutoSave);
         this._cmdBarFarItems = this.renderCommandBarFarItem(newProps.data.length);
     }
 
     //#region Private functions
-    private _onRenderShowPlainHoverCard = (item?: any, index?: number, column?: IColumn): JSX.Element | React.ReactText => {
-        const plainCardProps: IPlainCardProps = {
-            onRenderPlainCard: this._onRenderPlainCard,
-            renderData: column ? item[column.key as keyof IListData] : "",
-        };
-
-        if (column) {
-            return (
-                <HoverCard plainCardProps={plainCardProps} instantOpenOnClick={true} type={HoverCardType.plain}>
-                    <div className={classNames.item}>{item[column.key as keyof IListData]}</div>
-                </HoverCard>
-            );
-        }
-
-        // Return empty if column is NULL
-        return "";
-    };
-
-    private _onRenderPlainCard = (item: string): JSX.Element => {
-        return <div className={classNames.plainCard}>{item}</div>;
-    };
-
     private _onRenderDetailsHeader = (props: IDetailsHeaderProps | undefined, defaultRender?: IRenderFunction<IDetailsHeaderProps>): JSX.Element => {
         return (
             <Sticky stickyPosition={StickyPositionType.Header} isScrollSynced={true}>
@@ -159,11 +119,24 @@ export class ListControl extends React.Component<IListControlProps, IListControl
     };
 
     private _onRenderDetailsFooter = (props: IDetailsFooterProps | undefined, defaultRender?: IRenderFunction<IDetailsFooterProps>): JSX.Element => {
+        let savingStatusRow: any, unsavedChangedStatusRow: any;
+        if (this.state._isSaving) {
+            savingStatusRow = <Spinner className="footerSave" label="Saving changes..." ariaLive="assertive" labelPosition="left" />;
+        } else {
+            savingStatusRow = "";
+        }
+        if (this.state._unsavedChanged) {
+            unsavedChangedStatusRow = <Label className="footerLabel footerUnsavedChanges">{"Unsaved changes"}</Label>;
+        } else {
+            unsavedChangedStatusRow = "";
+        }
         return (
             <Sticky stickyPosition={StickyPositionType.Footer} isScrollSynced={true}>
-                <div className={classNames.listFooter}>
-                    <Label className={"listFooterLabel"}>{`${this.state._selectionCount} selected`}</Label>
-                    <CommandBar className={"cmdbar"} farItems={this._cmdBarFarItems} items={this._cmdBarItems} />
+                <div className={"footer"}>
+                    <Label className={"footerLabel"}>{`${this.state._selectionCount} selected`}</Label>
+                    {savingStatusRow}
+                    {unsavedChangedStatusRow}
+                    <CommandBar className={"footerCmdBar"} farItems={this._cmdBarFarItems} items={this._cmdBarItems} />
                 </div>
             </Sticky>
         );
@@ -214,6 +187,26 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return items.slice(0).sort((a: T, b: T) => ((isSortedDescending ? a[key] < b[key] : a[key] > b[key]) ? 1 : -1));
     };
 
+    private renderCommandBarItems(isAutoSaveEnabled: boolean): ICommandBarItemProps[] {
+        if (isAutoSaveEnabled || this.state._isSaving) {
+            return [];
+        } else {
+            return [
+                {
+                    key: "save",
+                    text: "Save",
+                    iconProps: { iconName: "Save" },
+                    onClick: () => {
+                        if (this.state._triggerUpdate) {
+                            this.setState({ _isSaving: true, _unsavedChanged: false });
+                            this.state._triggerUpdate(this.state._items);
+                        }
+                    },
+                },
+            ];
+        }
+    }
+
     private renderCommandBarFarItem(recordsLoaded: number): ICommandBarItemProps[] {
         return [
             {
@@ -222,7 +215,6 @@ export class ListControl extends React.Component<IListControlProps, IListControl
                 ariaLabel: "Next",
                 iconProps: { iconName: "ChevronRight" },
                 disabled: recordsLoaded == this._totalRecords,
-                className: classNames.cmdBarFarItems,
                 onClick: () => {
                     if (this.state._triggerPaging) {
                         this.state._triggerPaging("next");
@@ -268,8 +260,6 @@ export class ListControl extends React.Component<IListControlProps, IListControl
                 iColumn.onRender = (item: any, index: number | undefined, column: IColumn | undefined) => <Link href={`mailto:${item[column?.fieldName!]}`}>{item[column?.fieldName!]}</Link>;
             } else if (column.dataType === "Phone") {
                 iColumn.onRender = (item: any, index: number | undefined, column: IColumn | undefined) => <Link href={`skype:${item[column?.fieldName!]}?call`}>{item[column!.fieldName!]}</Link>;
-            } else if (this._hoveringColumns && this._hoveringColumns.includes(column.key)) {
-                iColumn.onRender = this._onRenderShowPlainHoverCard;
             }
 
             iColumns.push(iColumn);
@@ -287,10 +277,6 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return totalColumnWidth + 100;
     }
 
-    private _parseHoveringColumns(commaSeparatedString: string): string[] {
-        return commaSeparatedString.split(",");
-    }
-
     private _insertBeforeItem(item: IListData): void {
         const draggedItems = this._selection.isIndexSelected(this._draggedIndex) ? (this._selection.getSelection() as IListData[]) : [this._draggedItem!];
 
@@ -300,6 +286,15 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         items.splice(insertIndex, 0, ...draggedItems);
 
         this.setState({ _items: items });
+
+        if (this.props.enableAutoSave) {
+            this.setState({ _isSaving: true });
+            if (this.state._triggerUpdate) {
+                this.state._triggerUpdate(items);
+            }
+        } else {
+            this.setState({ _unsavedChanged: true });
+        }
     }
 
     private _getDragDropEvents(): IDragDropEvents {
@@ -345,28 +340,24 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return (
             <ThemeProvider>
                 <ScrollablePane scrollbarVisibility={ScrollbarVisibility.auto}>
-                    {/* <div style = {styles.divWidth}> */}
-                    <ErrorBoundary>
-                        <DetailsList
-                            setKey="parentcustomerid"
-                            items={this.state._items}
-                            columns={this.state._columns}
-                            onColumnHeaderClick={this._onColumnClick}
-                            layoutMode={DetailsListLayoutMode.justified}
-                            constrainMode={ConstrainMode.unconstrained}
-                            onItemInvoked={this._onItemInvoked}
-                            dragDropEvents={this._dragDropEvents}
-                            selection={this._selection}
-                            selectionPreservedOnEmptyClick={true}
-                            selectionMode={SelectionMode.multiple}
-                            onRenderDetailsHeader={this._onRenderDetailsHeader}
-                            onRenderDetailsFooter={this._onRenderDetailsFooter}
-                            ariaLabelForSelectionColumn="Toggle selection"
-                            ariaLabelForSelectAllCheckbox="Toggle selection for all items"
-                            checkButtonAriaLabel="Row checkbox"
-                        />
-                    </ErrorBoundary>
-                    {/* </div> */}
+                    <DetailsList
+                        setKey="parentcustomerid"
+                        items={this.state._items}
+                        columns={this.state._columns}
+                        onColumnHeaderClick={this._onColumnClick}
+                        layoutMode={DetailsListLayoutMode.justified}
+                        constrainMode={ConstrainMode.unconstrained}
+                        onItemInvoked={this._onItemInvoked}
+                        dragDropEvents={this._dragDropEvents}
+                        //selection={this._selection}
+                        //selectionPreservedOnEmptyClick={true}
+                        selectionMode={SelectionMode.none}
+                        onRenderDetailsHeader={this._onRenderDetailsHeader}
+                        onRenderDetailsFooter={this._onRenderDetailsFooter}
+                        ariaLabelForSelectionColumn="Toggle selection"
+                        ariaLabelForSelectAllCheckbox="Toggle selection for all items"
+                        checkButtonAriaLabel="Row checkbox"
+                    />
                 </ScrollablePane>
             </ThemeProvider>
         );
