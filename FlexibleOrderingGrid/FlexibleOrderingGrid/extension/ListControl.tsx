@@ -133,7 +133,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
         return (
             <Sticky stickyPosition={StickyPositionType.Footer} isScrollSynced={true}>
                 <div className={"footer"}>
-                    <Label className={"footerLabel"}>{`${this.state._selectionCount} selected`}</Label>
+                    {/* <Label className={"footerLabel"}>{`${this.state._selectionCount} selected`}</Label> */}
                     {savingStatusRow}
                     {unsavedChangedStatusRow}
                     <CommandBar className={"footerCmdBar"} farItems={this._cmdBarFarItems} items={this._cmdBarItems} />
@@ -188,7 +188,7 @@ export class ListControl extends React.Component<IListControlProps, IListControl
     };
 
     private renderCommandBarItems(isAutoSaveEnabled: boolean): ICommandBarItemProps[] {
-        if (isAutoSaveEnabled || this.state._isSaving) {
+        if (isAutoSaveEnabled) {
             return [];
         } else {
             return [
