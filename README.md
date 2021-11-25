@@ -111,7 +111,9 @@ PCF control that displays clocks with different timezones based on the configura
 
 PCF control that helps the user sets their own ordering on the records by using drag & drop feature. It has auto-save as well as manual save feature.
 
-![GitHub Releases](https://img.shields.io/static/v1?label=New&message=Coming%20Soon&style=for-the-badge&logo=JSONWebTokens&color=brightgreen)
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Flexible%20Ordering%20Grid&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/FlexOrderGrid-v.1.0.9)
+
+[![GitHub Read](https://img.shields.io/static/v1?label=Read%20More%20Here&message=%20&style=for-the-badge&logo=github&color=blue)](https://github.com/Power-Maverick/PCF-Controls/tree/master/FlexibleOrderingGrid)
 
 
 
