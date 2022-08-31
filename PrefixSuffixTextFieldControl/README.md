@@ -1,6 +1,6 @@
 # Prefix & Suffix Text Field Control
 
-<!-- [![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Inline%20Text%20Editor&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/ITE-v.1.0.0) -->
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Prefix%20Suffix%20TextField&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/PrefixSuffixTextField-v.1.0.2)
 
 A control that provides the flexibility to show prefix and suffix on the control without saving that to the database. This control is supported on **canvas apps**.
 
