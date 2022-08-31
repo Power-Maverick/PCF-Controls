@@ -24,6 +24,7 @@ All controls will have their own folder. Unmanaged solution file for each contro
       - [Inline Text Editor](#inline-text-editor)
       - [Timezone Converter](#timezone-converter)
       - [Flexible Ordering List](#flexible-ordering-list)
+      - [Prefix Suffix TextField](#prefix-suffix-textField)
 
 ---
 
