@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Maverick.Controls" constructor="UrlCard" version="1.0.3" display-name-key="URL Preview Card" description-key="Displays the URL information as a card" preview-image="img/preview.png" control-type="standard">
+  <control namespace="Maverick.Controls" constructor="UrlCard" version="1.0.4" display-name-key="URL Preview Card" description-key="Displays the URL information as a card" preview-image="img/preview.png" control-type="standard">
     <property name="Url" display-name-key="URL" description-key="Url that needs to be displayed as Card" of-type-group="supportedUrlTypes" usage="bound" required="true" />
     <property name="LinkPreviewApiKey" display-name-key="Link Preview Api Key" description-key="(Optional) Api Key for link preview. Create your key here ▶ linkpreview.net" of-type="SingleLine.Text" usage="input" required="false" />
     <type-group name="supportedUrlTypes">

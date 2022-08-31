@@ -116,6 +116,7 @@ export class CardHorizontalExample extends React.Component<ICardProps, ICardStat
                         <Icon iconName="NavigateExternalInline" styles={iconStyles} />
                     </Card.Section>
                 </Card>
+                <TextField label="Image URL" readOnly defaultValue={this.state.image} />
             </Stack>
         );
     }

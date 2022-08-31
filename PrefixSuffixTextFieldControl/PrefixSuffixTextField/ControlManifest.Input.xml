@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="Maverick.Controls" constructor="PrefixSuffixTextField" version="1.0.2" display-name-key="TextField with Prefix And Suffix" description-key="A Fluent UI textfield that allows you to add prefix or suffix." control-type="standard">
+
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="textField" display-name-key="Text Field" description-key="Text Field" of-type-group="ValidTypes" usage="bound" required="true" />
+    <property name="displayOption" display-name-key="Display Option" description-key="Choose your display option" of-type="Enum" usage="input" required="true" default-value="2">
+      <value name="PrefixOnly" display-name-key="Prefix-Only">0</value>
+      <value name="SuffixOnly" display-name-key="Suffix-Only">1</value>
+      <value name="Both" display-name-key="Both">2</value>
+    </property>
+    <property name="prefixValue" display-name-key="Prefix Value" description-key="Prefix Value" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="suffixValue" display-name-key="Suffix Value" description-key="Suffix Value" of-type="SingleLine.Text" usage="input" required="false" />
+
+    <type-group name="ValidTypes">
+      <type>Decimal</type>
+      <type>SingleLine.Text</type>
+      <type>Whole.None</type>
+    </type-group>
+
+    <resources>
+      <code path="index.ts" order="1"/>
+    </resources>
+  </control>
+</manifest>
