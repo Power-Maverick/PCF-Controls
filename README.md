@@ -24,7 +24,8 @@ All controls will have their own folder. Unmanaged solution file for each contro
       - [Inline Text Editor](#inline-text-editor)
       - [Timezone Converter](#timezone-converter)
       - [Flexible Ordering List](#flexible-ordering-list)
-      - [Prefix Suffix TextField](#prefix-suffix-textField)
+      - [Prefix Suffix TextField](#prefix-suffix-textfield)
+      - [Chat GPT Control](#chat-gpt-control)
 
 ---
 
@@ -125,6 +126,14 @@ PCF control that provides the flexibility to show prefix and suffix on the contr
 [![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Prefix%20Suffix%20TextField&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/PrefixSuffixTextField-v.1.0.2)
 
 [![GitHub Read](https://img.shields.io/static/v1?label=Read%20More%20Here&message=%20&style=for-the-badge&logo=github&color=blue)](https://github.com/Power-Maverick/PCF-Controls/tree/master/PrefixSuffixTextFieldControl)
+
+#### Chat GPT Control
+
+PCF control that provides ability to run Chat GPT inside Power Apps. Saves the context so that you can start from where you left-off.
+
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Chat%20GPT&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/ChatGPTControl-v.1.0.1)
+
+[![GitHub Read](https://img.shields.io/static/v1?label=Read%20More%20Here&message=%20&style=for-the-badge&logo=github&color=blue)](https://github.com/Power-Maverick/PCF-Controls/tree/master/ChatGPTControl)
 
 
 
