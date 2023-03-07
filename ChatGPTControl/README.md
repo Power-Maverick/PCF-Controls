@@ -30,4 +30,4 @@ Ref.: [Chat GPT API Documentation](https://platform.openai.com/docs/guides/chat)
 
 ### Demo Video
 
-![Chat GPT Control](assets/screenshot.png)
+[![Chat GPT Control-DemoVideo](https://img.youtube.com/vi/qDMOvLGCzHM/0.jpg)](https://www.youtube.com/watch?v=qDMOvLGCzHM)
