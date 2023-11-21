@@ -25,7 +25,8 @@ All controls will have their own folder. Unmanaged solution file for each contro
       - [Timezone Converter](#timezone-converter)
       - [Flexible Ordering List](#flexible-ordering-list)
       - [Prefix Suffix TextField](#prefix-suffix-textfield)
-      - [ChatGPT Control](#chat-gpt-control)
+      - [ChatGPT Control](#chatgpt-control)
+      - [Custom Label Control](#custom-label-control)
 
 ---
 
@@ -135,5 +136,11 @@ PCF control that provides ability to run ChatGPT inside Power Apps. Saves the co
 
 [![GitHub Read](https://img.shields.io/static/v1?label=Read%20More%20Here&message=%20&style=for-the-badge&logo=github&color=blue)](https://github.com/Power-Maverick/PCF-Controls/tree/master/ChatGPTControl)
 
+#### Custom Label Control
 
+PCF label control that allows you to show static text with ability to make it bold and/or italic.
+
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Custom%20Label%20Control&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/CustomLabelControl-v.1.0.2)
+
+[![GitHub Read](https://img.shields.io/static/v1?label=Read%20More%20Here&message=%20&style=for-the-badge&logo=github&color=blue)](https://github.com/Power-Maverick/PCF-Controls/tree/master/CustomLabelControl)
 

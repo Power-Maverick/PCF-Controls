@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Maverick.Controls" constructor="CustomLabel" version="0.0.4" display-name-key="CustomLabel" description-key="CustomLabel description" control-type="virtual">
+  <control namespace="Maverick.Controls" constructor="CustomLabel" version="1.0.2" display-name-key="Custom Label" description-key="A label control that allows you to show static text with ability to make it bold and/or italic" control-type="virtual" preview-image="img/preview.png">
     <!--external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
     If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
     Example1:
