@@ -59,7 +59,8 @@ export class FlexibleOrderingGrid implements ComponentFramework.StandardControl<
         this.divDetailListWrapper = document.createElement("div");
         this.divDetailListWrapper.setAttribute("id", "detailListLocal");
         this.divDetailListWrapper.setAttribute("data-is-scrollable", "true");
-        let rowspan = (this.theContext.mode as any).rowSpan;
+        
+        let rowspan = this.theContext.parameters.listDataSet.paging.pageSize;
         let height = rowspan * 2 + /*Header*/ 4 + /*Footer*/ 4 + /*Margin*/ 2;
         if (rowspan) {
             this.divDetailListWrapper.style.height = `${height}em`;
