@@ -1,6 +1,6 @@
 # Flexible Ordering List Control
 
-[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Flexible%20Ordering%20Grid&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/FlexOrderGrid-v.1.0.10)
+[![GitHub Releases](https://img.shields.io/static/v1?label=Download&message=Flexible%20Ordering%20Grid&style=for-the-badge&logo=microsoft&color=brightgreen)](https://github.com/Power-Maverick/PCF-Controls/releases/tag/FlexOrderGrid-v.1.0.17)
 
 A fully configurable PCF dataset control that helps the user sets their own ordering on the records by using drag & drop feature. It has auto-save as well as manual save feature.
 
