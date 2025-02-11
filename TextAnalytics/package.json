@@ -14,7 +14,7 @@
     "office-ui-fabric-react": "^7.33.0"
   },
   "devDependencies": {
-    "pcf-scripts": "^0",
+    "pcf-scripts": "^1",
     "pcf-start": "^0"
   }
 }
